@@ -1,0 +1,56 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatted Text Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .bold-red {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: red;
+        }
+        .blue {
+            font-family: Arial, sans-serif;
+            color: blue;
+        }
+        .green-italic {
+            font-family: Impact, Charcoal, sans-serif;
+            color: green;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formatted Text Example</h1>
+    
+    <p id="displayText"></p>
+
+    <script>
+        function displayFormattedText() {
+           
+            const boldRedText = "<span class='bold-red'>xy</span>";
+            const blueText = "<span class='blue'>12</span>";
+            const greenItalicText = "<span class='green-italic'>89</span>";
+
+            
+            const formattedText = boldRedText + " " + blueText + " " + greenItalicText;
+
+            
+            document.getElementById("displayText").innerHTML = formattedText;
+        }
+
+        
+        window.onload = displayFormattedText;
+    </script>
+
+    <br><br>
+
+    <a href="https://federicobelsito.github.io/Hw2.html">Go back to Homework 2 main page</a>
+</body>
+<style>
+		body {
+			background: #f2cc8f;
+		}
+</html>
