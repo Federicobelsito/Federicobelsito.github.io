@@ -29,7 +29,7 @@
 
     <script>
         function displayFormattedText() {
-           
+            
             const boldRedText = "<span class='bold-red'>xy</span>";
             const blueText = "<span class='blue'>12</span>";
             const greenItalicText = "<span class='green-italic'>89</span>";
@@ -37,6 +37,8 @@
             
             const formattedText = boldRedText + " " + blueText + " " + greenItalicText;
 
+            
+            document.getElementById("displayText").innerHTML = formattedText;
         }
 
         
