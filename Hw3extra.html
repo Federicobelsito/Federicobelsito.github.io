@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesperson Commission Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: right;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        input[type="number"], input[type="text"] {
+            width: 80px;
+            text-align: right;
+        }
+        input[readonly] {
+            background-color: #f9f9f9;
+        }
+        button {
+            margin: 10px 0;
+        }
+        .output {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Salesperson Commission Calculator</h1>
+
+    <!-- Form for entering sales details -->
+    <form id="salesForm">
+        <label for="sellerName">Salesperson Name:</label>
+        <input type="text" id="sellerName" required>
+
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Qty Sold</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Item 1</td>
+                <td>$20.99</td>
+                <td><input type="number" id="qty1" min="0" value="0"></td>
+                <td><input type="text" id="total1" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 2</td>
+                <td>$12.75</td>
+                <td><input type="number" id="qty2" min="0" value="0"></td>
+                <td><input type="text" id="total2" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 3</td>
+                <td>$9.95</td>
+                <td><input type="number" id="qty3" min="0" value="0"></td>
+                <td><input type="text" id="total3" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 4</td>
+                <td>$35.89</td>
+                <td><input type="number" id="qty4" min="0" value="0"></td>
+                <td><input type="text" id="total4" readonly></td>
+            </tr>
+            <tr>
+                <th colspan="3">Total Sales:</th>
+                <td><input type="text" id="totalSales" readonly></td>
+            </tr>
+            <tr>
+                <th colspan="3">Total Earnings:</th>
+                <td><input type="text" id="totalEarnings" readonly></td>
+            </tr>
+        </table>
+
+        <button type="button" onclick="calculateEarnings()">Calculate Earnings</button>
+        <button type="reset" onclick="clearTotals()">Clear</button>
+    </form>
+
+    <p class="output" id="output"></p>
+
+    <script>
+        // Prices of items
+        const prices = [20.99, 12.75, 9.95, 35.89];
+
+        // Function to calculate total earnings
+        function calculateEarnings() {
+            const sellerName = document.getElementById("sellerName").value;
+            const qty1 = parseInt(document.getElementById("qty1").value) || 0;
+            const qty2 = parseInt(document.getElementById("qty2").value) || 0;
+            const qty3 = parseInt(document.getElementById("qty3").value) || 0;
+            const qty4 = parseInt(document.getElementById("qty4").value) || 0;
+
+            // Calculate total for each item
+            const total1 = qty1 * prices[0];
+            const total2 = qty2 * prices[1];
+            const total3 = qty3 * prices[2];
+            const total4 = qty4 * prices[3];
+
+            // Display the totals for each item
+            document.getElementById("total1").value = total1.toFixed(2);
+            document.getElementById("total2").value = total2.toFixed(2);
+            document.getElementById("total3").value = total3.toFixed(2);
+            document.getElementById("total4").value = total4.toFixed(2);
+
+            // Calculate the total sales
+            const totalSales = total1 + total2 + total3 + total4;
+            document.getElementById("totalSales").value = totalSales.toFixed(2);
+
+            // Calculate the total earnings (Base Salary + 9% Commission)
+            const earnings = 250 + (totalSales * 0.09);
+            document.getElementById("totalEarnings").value = earnings.toFixed(2);
+
+            // Display a final output message
+            const outputMessage = `Salesperson: ${sellerName} | Total Sales: $${totalSales.toFixed(2)} | Total Earnings: $${earnings.toFixed(2)}`;
+            document.getElementById("output").textContent = outputMessage;
+        }
+
+        // Function to clear the totals
+        function clearTotals() {
+            document.getElementById("total1").value = '';
+            document.getElementById("total2").value = '';
+            document.getElementById("total3").value = '';
+            document.getElementById("total4").value = '';
+            document.getElementById("totalSales").value = '';
+            document.getElementById("totalEarnings").value = '';
+            document.getElementById("output").textContent = '';
+        }
+    </script>
+
+</body>
+</html>
