@@ -53,12 +53,11 @@
     <h1>Homework 3 - Part 2</h1>
 
     <form id="salesForm">
-        <!-- Salesperson name input -->
+    
         <label for="sellerName">Seller's Name:</label>
         <input type="text" id="sellerName" required>
         
-        <!-- Items sold input -->
-  
+    
         <label>Item 1:</label>
         <input type="number" id="qty1" min="0" value="0">
         <label>Item 2:</label>
@@ -68,13 +67,12 @@
         <label>Item 4:</label>
         <input type="number" id="qty4" min="0" value="0">
 
-        <!-- Action buttons -->
+
         <div>
             <button type="button" onclick="calculateEarnings()">Submit</button>
             <button type="reset" onclick="clearTotals()">Clear Form</button>
         </div>
 
-        <!-- Sales table -->
         <table>
             <tr>
                 <th>Item#</th>
@@ -120,10 +118,10 @@
     <p class="output" id="output"></p>
 
     <script>
-        // Prices of items
+
         const prices = [20.99, 12.75, 9.95, 35.89];
 
-        // Function to calculate total earnings
+    
         function calculateEarnings() {
             const sellerName = document.getElementById("sellerName").value;
             const qty1 = parseInt(document.getElementById("qty1").value) || 0;
@@ -131,38 +129,37 @@
             const qty3 = parseInt(document.getElementById("qty3").value) || 0;
             const qty4 = parseInt(document.getElementById("qty4").value) || 0;
 
-            // Display the entered quantities
+       
             document.getElementById("displayQty1").value = qty1;
             document.getElementById("displayQty2").value = qty2;
             document.getElementById("displayQty3").value = qty3;
             document.getElementById("displayQty4").value = qty4;
 
-            // Calculate total for each item
+           
             const total1 = qty1 * prices[0];
             const total2 = qty2 * prices[1];
             const total3 = qty3 * prices[2];
             const total4 = qty4 * prices[3];
 
-            // Display the totals for each item
+         
             document.getElementById("total1").value = total1.toFixed(2);
             document.getElementById("total2").value = total2.toFixed(2);
             document.getElementById("total3").value = total3.toFixed(2);
             document.getElementById("total4").value = total4.toFixed(2);
 
-            // Calculate the total sales
             const totalSales = total1 + total2 + total3 + total4;
             document.getElementById("totalSales").value = totalSales.toFixed(2);
 
-            // Calculate the total earnings (Base Salary + 9% Commission)
+        
             const earnings = 250 + (totalSales * 0.09);
             document.getElementById("totalEarnings").value = earnings.toFixed(2);
 
-            // Display a final output message
+          
             const outputMessage = `Salesperson: ${sellerName} | Total Sales: $${totalSales.toFixed(2)} | Total Earnings: $${earnings.toFixed(2)}`;
             document.getElementById("output").textContent = outputMessage;
         }
 
-        // Function to clear the totals
+
         function clearTotals() {
             document.getElementById("displayQty1").value = '';
             document.getElementById("displayQty2").value = '';
