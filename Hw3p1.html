@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Grades</title>
     <style>
-        /* Simple styling for clarity */
+       
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -30,7 +30,7 @@
 
     <h1>Student Grades</h1>
 
-    <!-- Form for entering student grades -->
+  
     <form id="gradesForm">
         <label for="hwAvg">Homework Average (0-100):</label>
         <input type="number" id="hwAvg" min="0" max="100" required>
@@ -48,48 +48,46 @@
         <button type="reset">Clear</button>
     </form>
 
-    <!-- Output section for displaying results or errors -->
+
     <p id="output"></p>
 
     <script>
-        // Event listener for form submission
+      
         document.getElementById("gradesForm").addEventListener("submit", function(event) {
-            event.preventDefault();  // Prevent form submission (page reload)
-
-            // Get the values from the form
+            event.preventDefault();  
+        
             const hwAvg = parseInt(document.getElementById("hwAvg").value);
             const midExam = parseInt(document.getElementById("midExam").value);
             const finalExam = parseInt(document.getElementById("finalExam").value);
             const participation = parseInt(document.getElementById("participation").value);
             const output = document.getElementById("output");
 
-            // Validate input (must be between 0-100)
             if (isValidInput(hwAvg, midExam, finalExam, participation)) {
-                // Calculate the final average
+          
                 const finalAverage = Math.round((0.5 * hwAvg) + (0.2 * midExam) + (0.2 * finalExam) + (0.1 * participation));
 
-                // Determine the letter grade
+          
                 const grade = getLetterGrade(finalAverage);
 
-                // Display the final average and grade
+              
                 output.textContent = `Final Average: ${finalAverage}, Grade: ${grade}`;
 
-                // If the grade is 'D' or 'F', show the retake message
+    
                 if (grade === 'D' || grade === 'F') {
                     output.textContent += " - Student must retake the course.";
                 }
             } else {
-                // Display an error message if the input is invalid
+              
                 output.textContent = "Error: Please enter valid numbers between 0 and 100.";
             }
         });
 
-        // Function to validate the input (ensure it's between 0 and 100)
+      
         function isValidInput(hwAvg, midExam, finalExam, participation) {
             return [hwAvg, midExam, finalExam, participation].every(val => !isNaN(val) && val >= 0 && val <= 100);
         }
 
-        // Function to determine the letter grade based on the final average
+  
         function getLetterGrade(finalAverage) {
             if (finalAverage >= 90) return 'A';
             if (finalAverage >= 80) return 'B';
