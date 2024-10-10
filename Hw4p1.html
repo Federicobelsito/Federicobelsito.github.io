@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integer Products and Sums</title>
+    <script>
+        function calculateUsingForLoop() {
+            let product = 1;
+            let sum = 0;
+            for (let i = 5; i <= 25; i += 4) {
+                product *= i;
+                sum += i;
+            }
+            document.getElementById("resultForLoop").innerHTML = `
+                The result of 5 * 9 * 13 * 17 * 21 * 25 is ${product.toLocaleString()}<br>
+                The result of 5 + 9 + 13 + 17 + 21 + 25 is ${sum.toLocaleString()}`;
+        }
+
+        function calculateUsingWhileLoop() {
+            let product = 1;
+            let sum = 0;
+            let i = 3;
+            while (i <= 18) {
+                product *= i;
+                sum += i;
+                i += 3;
+            }
+            document.getElementById("resultWhileLoop").innerHTML = `
+                The result of 3 * 6 * 9 * 12 * 15 * 18 is ${product.toLocaleString()}<br>
+                The result of 3 + 6 + 9 + 12 + 15 + 18 is ${sum.toLocaleString()}`;
+        }
+    </script>
+</head>
+<body onload="calculateUsingForLoop(); calculateUsingWhileLoop();">
+    <h1>Product and Sum Calculations</h1>
+    <h2>Using for loop:</h2>
+    <p id="resultForLoop"></p>
+
+    <h2>Using while loop:</h2>
+    <p id="resultWhileLoop"></p>
+</body>
+  
+</html>
