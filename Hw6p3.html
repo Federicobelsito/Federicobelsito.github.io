@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 6: Part 3 - Phone Number Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+    input[type="text"], button {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 1rem;
+      width: 100%;
+    }
+    textarea {
+      margin-top: 10px;
+      width: 100%;
+      height: 60px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    function validatePhoneNumber() {
+      const phoneInput = document.getElementById("phoneNumber").value.trim();
+      const output = document.getElementById("output");
+      output.value = ""; // Clear previous output
+
+      // Regular expression for phone number validation
+      const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+      if (!phoneRegex.test(phoneInput)) {
+        output.value = "Invalid phone number format. Please type the phone number in this format: (999) 999-9999.";
+      } else {
+        output.value = `Thank you for providing your phone number (${phoneInput}). One of our agents will contact you soon.`;
+      }
+    }
+
+    function clearForm() {
+      document.getElementById("phoneForm").reset();
+      document.getElementById("output").value = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>Homework 6: Part 3 - Phone Number Validation</h1>
+  <form id="phoneForm" onsubmit="event.preventDefault(); validatePhoneNumber();">
+    <label for="phoneNumber">Enter your phone number:</label>
+    <input type="text" id="phoneNumber" placeholder="(999) 999-9999">
+
+    <button type="button" onclick="validatePhoneNumber()">Submit</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </form>
+
+  <textarea id="output" readonly></textarea>
+
+  <a href="homework6.html">Go Back to Homework 6 Main Page</a>
+     <style>
+		body {
+			background: #f2cc8f;
+		}
+</style>  
+</body>
+</html>

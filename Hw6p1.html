@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 6: Part 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+    input, button, textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    .output {
+      margin-top: 20px;
+      font-weight: bold;
+      white-space: pre-wrap;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    function validateAndCalculate() {
+      const input = document.getElementById("numberInput").value.trim();
+      const output = document.getElementById("output");
+      output.textContent = ""; // Clear previous output
+
+      // Parse and validate input
+      const number = parseFloat(input);
+      const decimalMatch = /^[0-9]+(\.[0-9]{4,})$/;
+
+      if (isNaN(number) || !decimalMatch.test(input)) {
+        output.textContent = "You need to type a number with at least 4 decimals, please try again.";
+        return;
+      }
+
+      // Perform calculations
+      const roundedInt = Math.round(number);
+      const squareRootInt = Math.round(Math.sqrt(number));
+      const roundedTenths = number.toFixed(1);
+      const roundedHundredths = number.toFixed(2);
+      const roundedThousandths = number.toFixed(3);
+
+      // Display results
+      output.textContent = `
+You typed number ${input}
+Rounded to the nearest integer = ${roundedInt}
+Square root rounded to integer = ${squareRootInt}
+Rounded to the nearest 10th position = ${roundedTenths}
+Rounded to the nearest 100th position = ${roundedHundredths}
+Rounded to the nearest 1000th position = ${roundedThousandths}
+      `;
+    }
+
+    function clearForm() {
+      document.getElementById("numberForm").reset();
+      document.getElementById("output").textContent = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>Homework 6: Part 1 - Number Calculations</h1>
+  <form id="numberForm" onsubmit="event.preventDefault(); validateAndCalculate();">
+    <label for="numberInput">Enter a number with at least 4 decimal places:</label>
+    <input type="text" id="numberInput" placeholder="e.g., 4.3264">
+    <button type="button" onclick="validateAndCalculate()">Submit</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </form>
+  <div id="output" class="output"></div>
+  <a href="homework6.html">Go Back to Homework 6 Main Page</a>
+   <style>
+		body {
+			background: #f2cc8f;
+		}
+</style>  
+</body>
+</html>
