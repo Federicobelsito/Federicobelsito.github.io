@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 5: Part 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      margin-top: 20px;
+    }
+    label {
+      font-weight: bold;
+    }
+    select, button {
+      margin: 10px 0;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    // Function for the first pulldown menu (onchange event)
+    function navigateOnChange(selectedValue) {
+      if (selectedValue) {
+        window.open(selectedValue, '_blank');
+      }
+    }
+
+    // Function for the second pulldown menu (onclick event with button)
+    function navigateOnClick() {
+      const selectElement = document.getElementById('menu2');
+      const selectedValue = selectElement.value;
+      if (selectedValue) {
+        window.open(selectedValue, '_blank');
+      } else {
+        alert('Please select a website first.');
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Homework 5: Part 2 - Pulldown Menu Navigation</h1>
+  <a href="homework5.html">Go Back to Homework 5 Main Page</a>
+
+  <div class="container">
+    <!-- First Pulldown Menu -->
+    <label for="menu1">Navigate using onchange:</label>
+    <select id="menu1" onchange="navigateOnChange(this.value)">
+      <option value="">Select a website</option>
+      <option value="https://www.google.com">Google</option>
+      <option value="https://www.wikipedia.org">Wikipedia</option>
+      <option value="https://www.youtube.com">YouTube</option>
+    </select>
+  </div>
+
+  <div class="container">
+    <!-- Second Pulldown Menu -->
+    <label for="menu2">Navigate using onclick button:</label>
+    <select id="menu2">
+      <option value="">Select a website</option>
+      <option value="https://www.amazon.com">Amazon</option>
+      <option value="https://www.twitter.com">Twitter</option>
+      <option value="https://www.reddit.com">Reddit</option>
+    </select>
+    <button onclick="navigateOnClick()">Go</button>
+  </div>
+  <style>
+		body {
+			background: #f2cc8f;
+		}
+</style>
+</body>
+</html>
