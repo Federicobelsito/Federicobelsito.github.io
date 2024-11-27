@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 7 - Part 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    main {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      min-height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Customize Text Styles</h1>
+
+  <!-- Form for user input -->
+  <form id="styleForm">
+    <fieldset>
+      <legend>Background Color</legend>
+      <label><input type="radio" name="backgroundColor" value="lightblue"> Light Blue</label>
+      <label><input type="radio" name="backgroundColor" value="lightgreen"> Light Green</label>
+      <label><input type="radio" name="backgroundColor" value="lightyellow"> Light Yellow</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Text Styles</legend>
+      <label><input type="checkbox" name="textStyle" value="bold"> Bold</label>
+      <label><input type="checkbox" name="textStyle" value="italic"> Italic</label>
+      <label><input type="checkbox" name="textStyle" value="underline"> Underline</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Font Size</legend>
+      <label for="fontSize">Choose font size:</label>
+      <select id="fontSize">
+        <option value="1em">Default (1em)</option>
+        <option value="1.5em">Large (1.5em)</option>
+        <option value="2em">Extra Large (2em)</option>
+      </select>
+    </fieldset>
+  </form>
+
+  <!-- Area for applying styles -->
+  <main>
+    <p>This is a sample paragraph where the styles will be applied.</p>
+    <p>You can change the background color, text styles, and font size.</p>
+    <p>Feel free to experiment with different combinations!</p>
+  </main>
+
+  <!-- Link back to Homework 7 main page -->
+  <p><a href="homework7.html">Return to Homework 7 Main Page</a></p>
+
+  <script>
+    const main = document.querySelector('main');
+    const form = document.getElementById('styleForm');
+
+    // Handle changes in the form
+    form.addEventListener('change', (event) => {
+      const { name, value, type, checked } = event.target;
+
+      // Apply background color if a radio button is clicked
+      if (name === 'backgroundColor') {
+        main.style.backgroundColor = value;
+      }
+
+      // Handle checkbox-based styles (bold, italic, underline)
+      if (type === 'checkbox') {
+        switch (value) {
+          case 'bold':
+            main.style.fontWeight = checked ? 'bold' : 'normal';
+            break;
+          case 'italic':
+            main.style.fontStyle = checked ? 'italic' : 'normal';
+            break;
+          case 'underline':
+            main.style.textDecoration = checked ? 'underline' : 'none';
+            break;
+        }
+      }
+
+      // Handle font size selection
+      if (event.target.id === 'fontSize') {
+        main.style.fontSize = value;
+      }
+    });
+  </script>
+</body>
+</html>

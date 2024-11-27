@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Example - User Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #greeting {
+      margin-top: 20px;
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Our Page!</h1>
+
+  <div id="formContainer">
+    <h2>Please enter your information:</h2>
+    <form id="userInfoForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required><br><br>
+      <label for="username">Username:</label>
+      <input type="text" id="username" required><br><br>
+      <button type="submit">Save Information</button>
+    </form>
+  </div>
+
+  <div id="greeting"></div>
+
+  <script>
+    // Function to get a cookie by name
+    function getCookie(name) {
+      let cookieArr = document.cookie.split(";");
+
+      for (let i = 0; i < cookieArr.length; i++) {
+        let cookie = cookieArr[i].trim();
+        if (cookie.indexOf(name + "=") === 0) {
+          return cookie.substring(name.length + 1);
+        }
+      }
+      return "";
+    }
+
+    // Function to set a cookie that expires when the browser is closed
+    function setCookie(name, value) {
+      document.cookie = name + "=" + value + "; path=/; samesite=lax";
+    }
+
+    // Check if the user is revisiting the page
+    let userNameCookie = getCookie("userName");
+    let userUserNameCookie = getCookie("userUserName");
+
+    if (userNameCookie && userUserNameCookie) {
+      // If cookies are present, display a welcome message
+      document.getElementById("greeting").textContent = `Welcome Back, ${userNameCookie}!`;
+      document.getElementById("formContainer").style.display = "none"; // Hide form if user is revisiting
+    } else {
+      // If cookies are not found, show the form
+      document.getElementById("userInfoForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        let name = document.getElementById("name").value;
+        let username = document.getElementById("username").value;
+
+        // Save name and username as cookies
+        setCookie("userName", name);
+        setCookie("userUserName", username);
+
+        // Show the welcome message
+        document.getElementById("greeting").textContent = `Welcome, ${name}!`;
+        document.getElementById("formContainer").style.display = "none"; // Hide form after submission
+      });
+    }
+  </script>
+       <style>
+		body {
+			background: #f2cc8f;
+		}
+</style> 
+</body>
+</html>
