@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 8 - AJAX Application</title>
+</head>
+<body>
+    <h1>Homework 8 - AJAX Application</h1>
+
+    <a href="https://federicobelsito.github.io/Hw1.html">Go back to Homework 1</a>
+
+    <h2>CD List</h2>
+    
+    <button id="loadCDsBtn">Load CD List</button>
+
+    <table id="cdTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Country</th>
+                <th>Company</th>
+                <th>Price</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        function loadCDList() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var xmlDoc = this.responseXML;
+                    var cds = xmlDoc.getElementsByTagName("CD");
+                    var table = document.getElementById("cdTable").getElementsByTagName('tbody')[0];
+                    table.innerHTML = ''; 
+
+                    for (var i = 0; i < cds.length; i++) {
+                        var row = table.insertRow();
+                        
+                        var titleCell = row.insertCell(0);
+                        var artistCell = row.insertCell(1);
+                        var countryCell = row.insertCell(2);
+                        var companyCell = row.insertCell(3);
+                        var priceCell = row.insertCell(4);
+                        var yearCell = row.insertCell(5);
+
+                        titleCell.innerHTML = cds[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;
+                        artistCell.innerHTML = cds[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue;
+                        countryCell.innerHTML = cds[i].getElementsByTagName("COUNTRY")[0].childNodes[0].nodeValue;
+                        companyCell.innerHTML = cds[i].getElementsByTagName("COMPANY")[0].childNodes[0].nodeValue;
+                        priceCell.innerHTML = cds[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue;
+                        yearCell.innerHTML = cds[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue;
+                    }
+                }
+            };
+            xhttp.open("GET", "cds.xml", true); 
+            xhttp.send();
+        }
+
+        document.getElementById("loadCDsBtn").addEventListener("click", loadCDList);
+    </script>
+
+    <h2>Explanation of AJAX</h2>
+    <p>
+        The AJAX code in this file sends an asynchronous HTTP request to fetch data from an external XML file ("cds.xml"). The XMLHttpRequest object is created to send the request, and once the data is successfully received (readyState == 4 and status == 200), the XML document is parsed. The data is extracted from the XML nodes and dynamically added to the HTML table on the page. This allows for seamless updates to the page content without a full page reload.
+    </p>
+
+    <h2>REST API</h2>
+    <p>
+        For this project, I have chosen the <a href="https://api.openweathermap.org" target="_blank">OpenWeatherMap API</a>. This REST API allows developers to fetch weather data for a specific location. The response format is JSON, providing easy access to current weather conditions, forecasts, and historical data. To use this API, developers need an API key, which can be obtained after creating an account. The API is free for basic usage, with premium features available for a fee. The documentation can be found <a href="https://openweathermap.org/api" target="_blank">here</a>, and it provides detailed instructions on how to integrate weather data into applications.
+    </p>
+</body>
+<style>
+		body {background: #f2cc8f; }
+</html>
